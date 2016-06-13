@@ -9,6 +9,8 @@ RSpec.describe User, type: :model do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:auth_token) }
+  # TODO
+  # Obtain the precise manner to test this using after_action :create
   xit { should validate_uniqueness_of(:auth_token)}
 
   it { should be_valid }
@@ -22,8 +24,9 @@ RSpec.describe User, type: :model do
 
   describe "#generate_authentication_token!" do
     it "generates a unique token" do
-      allow(@user).to receive(:auth_token).and_return("auniquetoken123")
+      # Refactor stub
       # Devise.stub(:friendly_token).and_return("auniquetoken123")
+      allow(@user).to receive(:auth_token).and_return("auniquetoken123")
       @user.generate_authentication_token!
       expect(@user.auth_token).to eql "auniquetoken123"
     end
