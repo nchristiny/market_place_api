@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
 
   describe "#generate_authentication_token!" do
     it "generates a unique token" do
-      # Refactor stub
+      # Deprecated stub rspec-mocks syntax
       # Devise.stub(:friendly_token).and_return("auniquetoken123")
       allow(@user).to receive(:auth_token).and_return("auniquetoken123")
       @user.generate_authentication_token!
