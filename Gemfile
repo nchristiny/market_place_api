@@ -41,7 +41,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'ffaker'
-
+  gem "email_spec"
 end
 
 group :development do
