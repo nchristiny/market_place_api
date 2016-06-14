@@ -1,13 +1,5 @@
 require 'rails_helper'
 
-# class Authentication
-#   include Authenticable
-#   before_action :authenticate_with_token!
-
-#   def dummy_action
-#   end
-# end
-
 class Authentication
   include Authenticable
 end
@@ -19,9 +11,10 @@ describe Authenticable do
   describe "#current_user" do
     before do
       @user = FactoryGirl.create :user
-      request.headers["Authorization"] = @user.auth_token
-      # Deprecated stub rspec-mocks syntax
+      api_authorization_header(@user.auth_token)
+      # Deprecated rspec-mocks syntax for stub
       # authentication.stub(:request).and_return(request)
+      # Replace with:
       allow(authentication).to receive(:current_user).and_return(@user)
     end
     it "returns the user from the authorization header" do
