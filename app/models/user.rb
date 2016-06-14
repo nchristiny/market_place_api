@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   validates :auth_token, uniqueness: true
 
   has_many :products, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
