@@ -21,7 +21,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
   end
 
   describe "GET #index" do
-    number_of_products = 2 + rand(8)
+    number_of_products = 5 + rand(8)
     before(:each) do
       number_of_products.times { FactoryGirl.create :product }
       get :index
@@ -34,7 +34,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
       it "returns all (#{number_of_products}) records from the database" do
         products_response = json_response
-        expect(products_response[:products].count).to be(number_of_products)
+        expect(products_response[:products].count).to eq(number_of_products)
       end
 
       it "returns the user object into each product" do
@@ -43,6 +43,13 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
           expect(product_response[:user]).to be_present
         end
       end
+
+      # # Pagination (not implemented)
+      # it { expect(json_response).to have_key(:meta) }
+      # it { expect(json_response[:meta]).to have_key(:pagination) }
+      # it { expect(json_response[:meta][:pagination]).to have_key(:per_page) }
+      # it { expect(json_response[:meta][:pagination]).to have_key(:total_pages) }
+      # it { expect(json_response[:meta][:pagination]).to have_key(:total_objects) }
 
       it { should respond_with 200 }
 
