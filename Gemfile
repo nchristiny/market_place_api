@@ -34,14 +34,16 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #Api gems
 gem 'active_model_serializers'
 
-gem "devise"
+gem 'devise'
 
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails'
-  gem "factory_girl_rails"
+  gem 'factory_girl_rails'
+  gem 'ffaker'
+
 end
 
 group :development do
@@ -53,6 +55,5 @@ group :development do
 end
 
 group :test do
-  gem 'ffaker'
   gem 'shoulda-matchers'
 end
