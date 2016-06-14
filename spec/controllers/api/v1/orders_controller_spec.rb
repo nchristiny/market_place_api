@@ -10,7 +10,7 @@ RSpec.describe Api::V1::OrdersController, type: :controller do
       get :index, user_id: current_user.id
     end
 
-    it "returns 4 order records from the user" do
+    it "returns #{number_of_orders} order records from the user" do
       orders_response = json_response[:orders]
       expect(orders_response.count).to eq(number_of_orders)
     end
@@ -22,8 +22,20 @@ RSpec.describe Api::V1::OrdersController, type: :controller do
     before(:each) do
       current_user = FactoryGirl.create :user
       api_authorization_header current_user.auth_token
-      @order = FactoryGirl.create :order, user: current_user
+
+      @product = FactoryGirl.create :product
+      @order = FactoryGirl.create :order, user: current_user, product_ids: [@product.id]
       get :show, user_id: current_user.id, id: @order.id
+    end
+
+    it "includes the total for the order" do
+      order_response = json_response[:order]
+      expect(order_response[:total]).to eql @order.total.to_s
+    end
+
+    it "includes the products on the order" do
+      order_response = json_response[:order]
+      expect(order_response[:products].count).to eq(1)
     end
 
     it "returns the user order record matching the id" do
