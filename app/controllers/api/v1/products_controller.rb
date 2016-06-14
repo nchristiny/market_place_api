@@ -8,11 +8,11 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def index
-    products = Product.search(params).page(params[:page]).per(params[:per_page])
-    render json: products, meta: { pagination:
-                                   { per_page: params[:per_page],
-                                     total_pages: products.total_pages,
-                                     total_objects: products.total_count } }
+    # TODO Pagination implementation
+    # products = Product.search(params).page(params[:page]).per(params[:per_page])
+    # products = Kaminari.paginate_array(Product.search(params)).page(params[:page]).per(params[:per_page])
+    # render json: products, meta: { pagination: { per_page: params[:per_page], total_pages: products.total_pages, total_objects: products.total_count } }
+    respond_with Product.search(params)
   end
 
   def create

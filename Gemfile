@@ -34,7 +34,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #Api gems
 gem 'active_model_serializers', '0.8.3'
 gem 'devise'
-gem 'kaminari'
+# Pagination not implemented
+# gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
