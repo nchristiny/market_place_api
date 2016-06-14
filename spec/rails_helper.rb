@@ -8,6 +8,7 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'support/factory_girl'
 require 'shoulda/matchers'
+require "email_spec"
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -49,6 +50,9 @@ RSpec.configure do |config|
   config.before(:each, type: :controller) do
     include_default_accept_headers
   end
+
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   before_validation :generate_authentication_token!
 
-  has_many :products, dependent: :destroy
-
   validates :auth_token, uniqueness: true
+
+  has_many :products, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

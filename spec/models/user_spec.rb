@@ -17,7 +17,8 @@ RSpec.describe User, type: :model do
   # end
   # Refactored:
   it { should validate_presence_of(:email) }
-
+  it { should have_many(:products) }
+  it { should have_many(:orders) }
   # TODO
   # Obtain the precise manner to test this using after_action :create
   xit { should validate_uniqueness_of(:auth_token)}
