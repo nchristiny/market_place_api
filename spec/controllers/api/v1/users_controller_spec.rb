@@ -4,7 +4,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   describe "GET #show" do
     before(:each) do
       @user = FactoryGirl.create :user
-      api_authorization_header(@user.auth_token)
       get :show, id: @user.id, format: :json
     end
 
