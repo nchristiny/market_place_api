@@ -32,8 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 #Api gems
-gem 'active_model_serializers'
-
+gem 'active_model_serializers', '0.8.3'
 gem 'devise'
 
 group :development, :test do
